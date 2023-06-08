@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="/images/logo-with-shadow.png"
+            type="image/x-icon"
+        />
+
+        <link rel="stylesheet" href="/src/style.css" />
+        <title>Quiz App Sim</title>
+    </head>
+    <body class="min-h-screen antialiased">
+
+        <div
+            class="container flex min-h-screen flex-col items-center justify-center gap-y-8 pt-16 pb-10 sm:pt-20"
+        >
+            <div
+                class="relative mx-auto flex w-1/2 items-center justify-center"
+            >
+                <a href="index.html" class="btn absolute top-0 left-0"
+                    >Kembali</a
+                >
+                <h1 class="text-3xl font-bold">Scores</h1>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="table-lg table">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="module" src="/src/score.js"></script>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

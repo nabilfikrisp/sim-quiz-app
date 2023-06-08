@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="/images/logo-with-shadow.png"
+            type="image/x-icon"
+        />
+
+        <link rel="stylesheet" href="/src/style.css" />
+        <title>Quiz App Sim</title>
+    </head>
+    <body class="min-h-screen antialiased">
+        <audio src="./src/audio/bgm.mp3" loop hidden autoplay id="bgm">
+            <p>
+                If you are reading this, it is because your browser does not
+                support the audio element.
+            </p>
+        </audio>
+        <div
+            class="container flex min-h-screen w-screen flex-col items-center justify-center gap-y-8"
+        >
+            <!-- <form
+                    id="form-input"
+                    action="{{ route('toefl.section.3') }}"
+                    method="post"
+                    class="absolute"
+                >
+                    <input
+                        id="score-input"
+                        name="correctAnswer2"
+                        type="hidden"
+                        value="21"
+                    />
+                    <input
+                        id="code-input"
+                        name="testCode"
+                        type="hidden"
+                        value="{{ $testCode }}"
+                    />
+                    <button
+                        class="btn-primary btn float-right"
+                        id="submit-form"
+                    >
+                        Done
+                    </button>
+                </form> -->
+            <div
+                class="mx-auto flex h-screen w-full grow items-center justify-center"
+                id="section-2-instruction"
+            >
+                <div
+                    class="relative flex h-[600px] w-[800px] flex-col items-center justify-center gap-y-8 border-4 border-accent bg-secondary/80 px-20 py-10"
+                >
+                    <h1 class="text-3xl font-semibold">Have Fun and Enjoy</h1>
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text font-semibold"
+                                >What is your name?</span
+                            >
+                        </label>
+                        <input
+                            id="username"
+                            type="text"
+                            placeholder="Type here"
+                            name="username"
+                            class="input-bordered input input-lg w-full max-w-xs"
+                        />
+                    </div>
+                    <button
+                        class="btn-lg btn"
+                        id="start-section-2"
+                        type="submit"
+                    >
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+            <div
+                class="mx-auto hidden h-screen w-full grow items-center justify-center"
+                id="test_body"
+            >
+                <div
+                    class="relative flex h-[640px] w-[800px] flex-col items-center justify-between border-4 border-accent bg-secondary px-20 py-10"
+                    id="test_box"
+                >
+                    <div
+                        class="flex w-full items-center justify-between text-xl font-medium"
+                        id="test_box_header"
+                    >
+                        <div class="font-semibold">
+                            Question:
+                            <span id="current-question-index">1</span>/<span
+                                id="total-question-span"
+                                >15</span
+                            >
+                        </div>
+                        <div class="text-3xl font-bold">
+                            <span id="timer">25:00</span>
+                        </div>
+                        <div class="font-semibold">
+                            Answered: <span id="answered">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-10 mb-10 flex justify-center">
+                        <img
+                            src="./src/images/11.png"
+                            alt=""
+                            class="h-40 w-40     mr-8 hidden"
+                            id="image-question"
+                        />
+                        <div
+                            class="text-left text-2xl font-semibold"
+                            id="question"
+                        >
+                            Ini adalah pertanyaan
+                        </div>
+                    </div>
+
+                    <div class="mb-4 w-full grow text-lg" id="test_box_options">
+                        <div
+                            class="choices-container grid h-full w-full grid-cols-2 gap-4"
+                        >
+                            <div class="form-control">
+                                <label
+                                    class="choice-box label btn flex h-full w-full cursor-pointer items-center justify-center gap-x-4"
+                                >
+                                    <input
+                                        class="choice-prefix choice-input accent-dark-green h-5 w-5"
+                                        name="choice-radio"
+                                        data-number="1"
+                                        type="radio"
+                                        value="abc"
+                                    />
+                                    <span
+                                        class="choice-text text-xl"
+                                        name="choice-span"
+                                        data-number="1"
+                                        >abc</span
+                                    >
+                                </label>
+                            </div>
+                            <div class="form-control">
+                                <label
+                                    class="choice-box label btn flex h-full w-full cursor-pointer items-center justify-center gap-x-4"
+                                >
+                                    <input
+                                        class="choice-prefix choice-input accent-dark-green h-5 w-5"
+                                        name="choice-radio"
+                                        data-number="2"
+                                        type="radio"
+                                        value="{{ $section2[$i]['Choice' . $i] }}"
+                                    />
+                                    <span
+                                        class="choice-text text-xl"
+                                        name="choice-span"
+                                        data-number="2"
+                                        >abc</span
+                                    >
+                                </label>
+                            </div>
+                            <div class="form-control">
+                                <label
+                                    class="choice-box label btn flex h-full w-full cursor-pointer items-center justify-center gap-x-4"
+                                >
+                                    <input
+                                        class="choice-prefix choice-input accent-dark-green h-5 w-5"
+                                        name="choice-radio"
+                                        data-number="3"
+                                        type="radio"
+                                        value="{{ $section2[$i]['Choice' . $i] }}"
+                                    />
+                                    <span
+                                        class="choice-text text-xl"
+                                        name="choice-span"
+                                        data-number="3"
+                                        >abc</span
+                                    >
+                                </label>
+                            </div>
+                            <div class="form-control">
+                                <label
+                                    class="choice-box label btn flex h-full w-full cursor-pointer items-center justify-center gap-x-4"
+                                >
+                                    <input
+                                        class="choice-prefix choice-input accent-dark-green h-5 w-5"
+                                        name="choice-radio"
+                                        data-number="4"
+                                        type="radio"
+                                        value="{{ $section2[$i]['Choice' . $i] }}"
+                                    />
+                                    <span
+                                        class="choice-text text-xl"
+                                        name="choice-span"
+                                        data-number="4"
+                                        >abc</span
+                                    >
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative w-full" id="control-box">
+                        <button
+                            class="btn-primary btn float-left hidden"
+                            id="prev-btn"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            class="btn-accent btn float-right"
+                            id="next-btn"
+                        >
+                            Next
+                        </button>
+                        <form id="form-input" action="score.html" method="post">
+                            <input
+                                id="score-input"
+                                name="correctAnswer2"
+                                type="hidden"
+                                value="0"
+                            />
+                            <input
+                                id="username-input"
+                                name="username"
+                                type="hidden"
+                                value="player"
+                            />
+                            <button
+                                class="btn-primary btn float-right hidden"
+                                id="submit-form"
+                            >
+                                Done
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mx-auto hidden h-screen w-full grow items-center justify-center"
+                id="score_body"
+            >
+                <div
+                    class="relative flex h-[640px] w-[800px] flex-col items-center justify-center border-4 border-accent bg-secondary px-20 py-10 text-xl font-semibold"
+                    id="score_box123"
+                >
+                    <a href="index.html" class="btn absolute top-0 left-0"
+                        >Kembali</a
+                    >
+                    <h1>Your Score:</h1>
+                    <div>
+                        <span id="score_p">0</span>
+                        <span>/ 100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="/src/start.js"></script>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>
