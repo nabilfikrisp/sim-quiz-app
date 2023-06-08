@@ -5,6 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 import { getDatabase, ref, push, update, child } from 'firebase/database';
 
+import img1 from './images/11.png';
+import img2 from './images/12.png';
+import img3 from './images/13.png';
+import img4 from './images/14.png';
+import img5 from './images/15.png';
+
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -30,8 +36,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-
-export default { app, database };
 
 const questions = questionsData;
 const question = document.getElementById('question');
@@ -60,7 +64,7 @@ const usernameInput = document.querySelector('#username-input');
 
 const form = document.getElementById('form-input');
 const submitBtn = document.getElementById('submit-form');
-const imageQuestion = document.querySelector("#image-question");
+const imageQuestion = document.querySelector('#image-question');
 
 startSection2.addEventListener('click', function () {
     const username = document.querySelector('#username');
@@ -70,7 +74,8 @@ startSection2.addEventListener('click', function () {
         usernameInput.value = username.value;
     }
 
-    const bgm = document.querySelector("#bgm");
+    const bgm = document.querySelector('#bgm');
+    bgm.volume = 0.7;
     bgm.play();
 
     document.getElementById('test_body').classList.remove('hidden');
@@ -229,14 +234,15 @@ function startSectionTwo() {
         } else if (currentQuestionIndex == Object.keys(questions).length) {
             nextBtn.classList.add('hidden');
             submitBtn.classList.remove('hidden');
-        } else if (currentQuestionIndex >= 11 && currentQuestionIndex <= 15){
-            imageQuestion.classList.remove("hidden");
+            imageQuestion.src = `./src/images/15.png`;
+        } else if (currentQuestionIndex >= 11 && currentQuestionIndex <= 14) {
+            imageQuestion.classList.remove('hidden');
             imageQuestion.src = `./src/images/${currentQuestionIndex}.png`;
         } else {
             nextBtn.classList.remove('hidden');
             prevBtn.classList.remove('hidden');
             submitBtn.classList.add('hidden');
-            imageQuestion.classList.add("hidden");
+            imageQuestion.classList.add('hidden');
             imageQuestion.src = `./src/images/11.png`;
         }
 

@@ -13,7 +13,7 @@ const questionsData = {
         Choice2: 'Emily Brontë',
         Choice3: 'Jane Austen',
         Choice4: 'Virginia Woolf',
-        Question: 'Mengapa programmer jarang berolahraga?'
+        Question: 'Siapakah penulis novel terkenal "Pride and Prejudice"?'
     },
     3: {
         Answer: 4,
